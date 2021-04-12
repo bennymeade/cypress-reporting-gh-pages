@@ -1,0 +1,1 @@
+# cypress-reporting-gh-pages
