@@ -25,7 +25,7 @@ jobs:
         run: npm run test:ci
         continue-on-error: true
 
-      - name: Copy test execution videos
+      - name: Copy test execution videos & screenshots
         run: |
           mkdir public
           cp -r cypress/videos public/videos
