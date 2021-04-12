@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "test:chrome": "npx cypress run --browser chrome --headless",
+        "test:ci": "npx cypress run --browser chrome --headless",
         "combine:report": "npx mochawesome-merge ./mochawesome-report/*.json -o index.json",
         "generate:report": "npx marge index.json --reportDir public --assetsDir public/assets --reportPageTitle cypressReport.html"
     },
