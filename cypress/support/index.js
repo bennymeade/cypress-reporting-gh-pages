@@ -26,14 +26,23 @@ import addContext from 'mochawesome/addContext'
 //     addContext({ test }, videoUrl)
 // });
 
-const titleToFileName = (title) => title.replace(/[:\/]/g, '');
+// const titleToFileName = (title) => title.replace(/[:\/]/g, '');
 
-Cypress.on('test:after:run', (test, runnable) => {
-    if (test.state === 'failed') {
-        const filename = `${titleToFileName(runnable.parent.title)}-${titleToFileName(test.title)}-failed.png`;
-        addContext({ test }, `../cypress/screenshots/${Cypress.spec.name}/${filename}`);
-        addContext({ test }, `../cypress/videos/${Cypress.spec.name}.mp4`);
-        // addContext({ test }, `../screenshots/${Cypress.spec.name}/${filename}`);
-        // addContext({ test }, `../videos/${Cypress.spec.name}.mp4`);
-    }
+// Cypress.on('test:after:run', (test, runnable) => {
+//     if (test.state === 'failed') {
+//         const filename = `${titleToFileName(runnable.parent.title)}-${titleToFileName(test.title)}-failed.png`;
+//         addContext({ test }, `../cypress/screenshots/${Cypress.spec.name}/${filename}`);
+//         addContext({ test }, `../cypress/videos/${Cypress.spec.name}.mp4`);
+//         // addContext({ test }, `../screenshots/${Cypress.spec.name}/${filename}`);
+//         // addContext({ test }, `../videos/${Cypress.spec.name}.mp4`);
+//     }
+// });
+
+Cypress.on("test:after:run", (test, runnable) => {
+    
+    let videoName = Cypress.spec.name
+    videoName = videoName.replace('/.js.*', '.js')
+    const videoUrl = 'videos/' + videoName + '.mp4'
+
+    addContext({ test }, videoUrl)
 });
