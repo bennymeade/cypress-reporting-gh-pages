@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install a project with a clean slate
+      - name: Install Cypress with a clean slate
         run: |
           npm ci
           $(npm bin)/cypress cache path

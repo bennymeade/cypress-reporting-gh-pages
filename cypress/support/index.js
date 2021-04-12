@@ -26,19 +26,19 @@ import addContext from 'mochawesome/addContext'
 //     addContext({ test }, videoUrl)
 // });
 
-// const titleToFileName = (title) => title.replace(/[:\/]/g, '');
+const titleToFileName = (title) => title.replace(/[:\/]/g, '');
 
-// Cypress.on('test:after:run', (test, runnable) => {
-//     if (test.state === 'failed') {
-//         const filename = `${titleToFileName(runnable.parent.title)}-${titleToFileName(test.title)}-failed.png`;
-//         // local paths
-//         // addContext({ test }, `../cypress/screenshots/${Cypress.spec.name}/${filename}`);
-//         // addContext({ test }, `../cypress/videos/${Cypress.spec.name}.mp4`);
-//         // CI paths
-//         addContext({ test }, `screenshots/${Cypress.spec.name}/${filename}`);
-//         addContext({ test }, `videos/${Cypress.spec.name}.mp4`);
-//     }
-// });
+Cypress.on('test:after:run', (test, runnable) => {
+    if (test.state === 'failed') {
+        const filename = `${titleToFileName(runnable.parent.title)}-${titleToFileName(test.title)}-failed.png`;
+        // local paths
+        // addContext({ test }, `../cypress/screenshots/${Cypress.spec.name}/${filename}`);
+        // addContext({ test }, `../cypress/videos/${Cypress.spec.name}.mp4`);
+        // CI paths
+        addContext({ test }, `screenshots/${Cypress.spec.name}/${filename}`);
+        addContext({ test }, `videos/${Cypress.spec.name}.mp4`);
+    }
+});
 
 // Cypress.on("test:after:run", (test, runnable) => {
     // let videoName = Cypress.spec.name
@@ -49,12 +49,12 @@ import addContext from 'mochawesome/addContext'
 // });
 
 
-Cypress.on('test:after:run', (test, runnable) => {
-    if (test.state === 'failed') {
-        let videoName = Cypress.spec.name
-        videoName = videoName.replace('/.js.*', '.js')
-        const videoUrl = 'videos/' + runnable.videoName + '.mp4'
+// Cypress.on('test:after:run', (test, runnable) => {
+//     if (test.state === 'failed') {
+//         let videoName = Cypress.spec.name
+//         videoName = videoName.replace('/.js.*', '.js')
+//         const videoUrl = 'videos/' + videoName + '.mp4'
     
-        addContext({ test }, videoUrl)
-    }
-});
+//         addContext({ test }, videoUrl)
+//     }
+// });
