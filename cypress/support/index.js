@@ -17,12 +17,32 @@
 import './commands'
 import addContext from 'mochawesome/addContext'
 
+// Cypress.on('test:after:run', (test, runnable) => {
+//     if (test.state === 'failed') {
+//         let videoName = Cypress.spec.name
+//         videoName = videoName.replace('/.js.*', '.js')
+//         const videoUrl = 'videos/' + videoName + '.mp4'
+    
+//         addContext({ test }, videoUrl)
+//     }
+// });
+
+// Cypress.on('test:after:run', test => {
+//     if (test.state === 'failed') {
+//       const rawVideoName = Cypress.spec.name;
+//       const videoName = rawVideoName.replace('/.js.*', '.js');
+//       const videoUrl = `videos/${videoName}.mp4`;
+  
+//       addContext({ test }, videoUrl);
+//     }
+//   });
+
+const titleToFileName = (title) => title.replace(/[:\/]/g, '');
+
 Cypress.on('test:after:run', (test, runnable) => {
     if (test.state === 'failed') {
-        let videoName = Cypress.spec.name
-        videoName = videoName.replace('/.js.*', '.js')
-        const videoUrl = 'videos/' + videoName + '.mp4'
-    
-        addContext({ test }, videoUrl)
+        const filename = `${titleToFileName(runnable.parent.title)} -- ${titleToFileName(test.title)} (failed).png`;
+        addContext({ test }, `../screenshots/${Cypress.spec.name}/${filename}`);
+        addContext({ test }, `../videos/${Cypress.spec.name}.mp4`);
     }
 });
