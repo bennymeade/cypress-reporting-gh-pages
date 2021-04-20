@@ -61,7 +61,7 @@ Cypress.on("test:after:run", (test, runnable) =>
             parent = parent.parent;
         }
         filename += `${titleToFileName(test.title)} (failed).png`;
-        addContext({ test }, `../screenshots/${Cypress.spec.name}/${filename}`);
-        addContext({ test }, `../videos/${Cypress.spec.name}.mp4`);
+        addContext({ test }, `screenshots/${Cypress.spec.name}/${filename}`);
+        addContext({ test }, `videos/${Cypress.spec.name}.mp4`);
     }
 });
