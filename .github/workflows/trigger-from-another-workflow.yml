@@ -1,6 +1,6 @@
 name: Triggering a worflow from another one
 on:
-  push:
+  workflow_dispatch:
 jobs:
   invoke:
     runs-on: ubuntu-latest
