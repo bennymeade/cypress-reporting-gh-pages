@@ -1,0 +1,13 @@
+name: Triggering a worflow from another one
+on:
+  workflow_dispatch:
+jobs:
+  invoke:
+    runs-on: ubuntu-latest
+    name: Invoke workflow with inputs
+    steps:
+      - uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Run with parameters
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN  }}
+          #inputs: '{ "description": "Name from another workflow on push", "default": "test:ci:smoke" }'
