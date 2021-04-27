@@ -21,3 +21,5 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - run: echo ${{ github.event.inputs }}
+
+      - run: echo ${{ github.event.inputs.runSuiteSize }}
