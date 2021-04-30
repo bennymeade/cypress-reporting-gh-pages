@@ -27,7 +27,7 @@ jobs:
         if: always()
         uses: 8398a7/action-slack@v3.9.0
         with:
-          github_base_url: https://github.com/Unilever/unilever-static
+          github_base_url: https://github.com/bennymeade/cypress-reporting-gh-pages
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow
           icon_emoji: ':scream:'
@@ -41,4 +41,4 @@ jobs:
         with:
           token: https://hooks.slack.com/services/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
           channels: test-automation-prod
-          workdir: packages/web/corporate/cypress
+          # workdir: packages/web/corporate/cypress
