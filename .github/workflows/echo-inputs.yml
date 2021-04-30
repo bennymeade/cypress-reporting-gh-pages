@@ -12,12 +12,14 @@ on:
         required: true
         default: test:ci:full
       localBuild:
-          description: 'Is build localhost required'
-          required: true
-          default: 'false'
+        description: 'Is build localhost required'
+        required: true
+        default: 'false'
 jobs:
   cypress-test:
     name: Run echo
     runs-on: ubuntu-18.04
     steps:
-      - run: echo ${{ github.event.inputs }}
+      - run: |
+          echo "runSuiteSize: ${{ github.event.inputs.runSuiteSize }}"
+          echo "localBuild: ${{ github.event.inputs.localBuild }}"
