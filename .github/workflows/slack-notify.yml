@@ -39,6 +39,6 @@ jobs:
         uses: trymbill/cypress-slack-video-upload-action@v1.3.0
         if: always()
         with:
-          token: xoxb-2003786573991-2012579522838-N0FfqdkRifc7ITXSadmGVpCc
+          token: xoxb-2003786573991-2043217735840-N5LYlgK6d0pfiFAl9gT9mcDP
           channels: cypress-results
           # workdir: packages/web/corporate/cypress
