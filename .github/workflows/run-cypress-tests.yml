@@ -3,9 +3,10 @@
 
 name: Create Cypress report
 on:
-  push:
-    branches:
-      - 'master'
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - 'master'
 jobs:
   cypress-test:
     name: Run on Chrome 89

@@ -1,9 +1,9 @@
 name: Cypress slack notify
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'master'
+  # push:
+  #   branches:
+  #     - 'master'
 jobs:
   cypress-test:
     name: Run on Chrome 89
@@ -40,5 +40,5 @@ jobs:
         if: always()
         with:
           token: https://hooks.slack.com/services/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
-          channels: test-automation-prod
+          channels: testing
           # workdir: packages/web/corporate/cypress
