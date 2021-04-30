@@ -1,5 +1,6 @@
 name: Cypress slack notify
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'master'
