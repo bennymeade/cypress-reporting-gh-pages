@@ -1,0 +1,16 @@
+name: Cypress mini slack notify
+on:
+  workflow_dispatch:
+jobs:
+  cypress-test:
+    name: Run on Chrome 89
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Slack notification with Cypress screenshots & videos
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        if: always()
+        with:
+          token: xoxb-2003786573991-2043217735840-N5LYlgK6d0pfiFAl9gT9mcDP
+          channels: cypress-results
