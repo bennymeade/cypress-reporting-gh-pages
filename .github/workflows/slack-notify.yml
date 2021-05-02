@@ -37,6 +37,7 @@ jobs:
 
       - name: Slack notification with Cypress screenshots & videos
         if: failure()
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channels: 'cypress-results'
