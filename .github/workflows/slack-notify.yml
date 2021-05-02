@@ -21,19 +21,18 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run test:ci:full
-        continue-on-error: true
 
-      # - name: Slack Notification
-      #   if: always()
-      #   uses: 8398a7/action-slack@v3.9.0
-      #   with:
-      #     github_base_url: https://github.com/bennymeade/cypress-reporting-gh-pages
-      #     status: ${{ job.status }}
-      #     fields: repo,message,commit,author,action,eventName,ref,workflow
-      #     icon_emoji: ':scream:'
-      #     text: 'Production smoke tests have failed, this requires immediate action :construction_worker:'
-      #   env:
-      #     SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+      - name: Slack Notification
+        if: failure()
+        uses: 8398a7/action-slack@v3.9.0
+        with:
+          github_base_url: https://github.com/bennymeade/cypress-reporting-gh-pages
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow
+          icon_emoji: ':scream:'
+          text: 'Production smoke tests have failed, this requires immediate action :construction_worker:'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TOKEN }}
 
       - name: Slack notification with Cypress screenshots & videos
         if: failure()
