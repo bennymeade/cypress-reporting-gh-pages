@@ -10,7 +10,9 @@ jobs:
 
       - name: Slack notification with Cypress screenshots & videos
         uses: trymbill/cypress-slack-video-upload-action@v1.3.0
-        if: always()
+        if: failure()
         with:
           token: ${{ secrets.SLACK_TOKEN }}
           channels: 'cypress-results'
+          workdir: cypress
+          message-text: 'To facilitate debugging these production test failures, the Cypress screenshots and videos have been posted to this thread. :mag:'
