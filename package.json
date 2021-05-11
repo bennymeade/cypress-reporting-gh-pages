@@ -6,7 +6,9 @@
         "generate:report": "npx marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
     },
     "devDependencies": {
-        "cypress": "^7.0.1",
+        "cypress": "^7.3.0",
+        "cypress-multi-reporters": "^1.5.0",
+        "cypress-slack-reporter": "^1.2.1",
         "mochawesome": "^6.2.2",
         "mochawesome-merge": "^4.2.0",
         "mochawesome-report-generator": "^5.2.0"

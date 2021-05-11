@@ -1,10 +1,14 @@
 {
     "defaultCommandTimeout": 5000,
     "video": true,
-    "reporter": "mochawesome",
+    "reporter": "cypress-multi-reporters",
     "reporterOptions": {
+      "reporterEnabled": "mochawesome",
+      "mochawesomeReporterOptions": {
+        "reportDir": "mochawesome-report",
         "overwrite": false,
         "html": false,
         "json": true
-    }
+      }
+  }
 }

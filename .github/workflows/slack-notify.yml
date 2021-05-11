@@ -22,6 +22,11 @@ jobs:
       - name: Run Cypress tests
         run: npm run test:ci:full
 
+      - name: Slack notification with Cypress screenshots & videos
+        if: always()
+        run: |
+          npx cypress-slack-reporter --report-dir mochawesome-report --ci-provider none
+
       - name: Slack Notification
         if: failure()
         uses: 8398a7/action-slack@v3.9.0
@@ -42,3 +47,4 @@ jobs:
           channels: 'cypress-results'
           workdir: cypress
           message-text: 'To facilitate debugging these production test failures, the Cypress screenshots and videos have been posted to this thread. :mag:'
+
