@@ -22,12 +22,12 @@ jobs:
       - name: Run Cypress tests
         run: npm run test:ci:full
 
-      - name: Slack notification with Cypress screenshots & videos
+      - name: Slack notification with total pass/fail
         if: always()
         run: |
           npx cypress-slack-reporter --report-dir mochawesome-report --ci-provider none
 
-      - name: Slack Notification
+      - name: Slack notification with repo links
         if: failure()
         uses: 8398a7/action-slack@v3.9.0
         with:
@@ -37,7 +37,7 @@ jobs:
           icon_emoji: ':scream:'
           text: 'Production smoke tests have failed, this requires immediate action :construction_worker:'
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Slack notification with Cypress screenshots & videos
         if: failure()
