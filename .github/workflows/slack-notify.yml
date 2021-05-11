@@ -25,6 +25,7 @@ jobs:
       - name: Slack notification with total pass/fail
         if: always()
         run: |
+          export SLACK_WEBHOOK_URL = ${{ secrets.SLACK_WEBHOOK_TEST_AUTOMATION }}
           npx cypress-slack-reporter --report-dir mochawesome-report --ci-provider none
 
       - name: Slack notification with repo links
