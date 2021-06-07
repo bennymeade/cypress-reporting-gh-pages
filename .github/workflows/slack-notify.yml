@@ -48,3 +48,8 @@ jobs:
         uses: testspace-com/setup-testspace@v1.0.4
         with:
           domain: ${{ github.bennymeade.testspace.com }}
+
+      - name: Publish Results to Testspace
+        if: always()
+        run: |
+          testspace results.xml
