@@ -51,8 +51,8 @@ jobs:
 
       - uses: testspace-com/setup-testspace@v1
         if: always()
-        with:
-          domain: ${{github.bennymeade}}
+        # with:
+        #   domain: ${{github.bennymeade}}
 
       - name: Publish Results to Testspace
         if: always()
