@@ -44,5 +44,6 @@ jobs:
           message-text: 'To facilitate debugging these production test failures, the Cypress screenshots and videos have been posted to this thread. :mag:'
 
       - uses: testspace-com/setup-testspace@v1
+        if: always()
         with:
-          domain: ${{ github.bennymeade }}  # Testspace subdomain defaults to GitHub org
+          domain: ${{ github.bennymeade.testspace.com }}  # Testspace subdomain defaults to GitHub org
