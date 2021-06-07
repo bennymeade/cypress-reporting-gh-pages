@@ -43,11 +43,16 @@ jobs:
           workdir: cypress
           message-text: 'To facilitate debugging these production test failures, the Cypress screenshots and videos have been posted to this thread. :mag:'
 
-      - name: TestSpace
+      # - name: TestSpace
+      #   if: always()
+      #   uses: testspace-com/setup-testspace@v1.0.4
+      #   with:
+      #     domain: ${{ github.bennymeade.testspace.com }}
+
+      - uses: testspace-com/setup-testspace@v1
         if: always()
-        uses: testspace-com/setup-testspace@v1.0.4
         with:
-          domain: ${{ github.bennymeade.testspace.com }}
+          domain: ${{github.bennymeade}}
 
       - name: Publish Results to Testspace
         if: always()
