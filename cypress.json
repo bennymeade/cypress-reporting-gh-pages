@@ -11,7 +11,7 @@
       "json": true
     },
     "mochaJunitReporterReporterOptions": {
-	    "mochaFile": "testSpaceResults.xml"
+	    "mochaFile": "test-results.xml"
     }
   }
 }
