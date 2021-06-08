@@ -16,4 +16,16 @@ context('Aliasing', () => {
       .first().find('td').first()
       .find('button').as('firstXBtn')
   })
+
+  it('I will fail 2', () => {
+    cy.get('.as-Xtable').find('tbody>tr')
+      .first().find('td').first()
+      .find('button').as('firstXBtn')
+  })
+
+  it('I will fail 3', () => {
+    cy.get('.as-Xtable').find('tbody>tr')
+      .first().find('td').first()
+      .find('button').as('firstXBtn')
+  })
 })
