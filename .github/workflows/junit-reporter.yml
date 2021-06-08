@@ -1,4 +1,4 @@
-name: Cypress slack notify
+name: Cypress with Junit reporter
 on:
   workflow_dispatch:
   # push:
