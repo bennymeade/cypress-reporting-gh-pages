@@ -2,11 +2,14 @@
     "scripts": {
         "test:ci:full": "npx cypress run --browser chrome --headless",
         "test:ci:smoke": "npx cypress run --spec 'cypress/integration/smoke-tests/*.spec.js' --browser chrome --headless",
+        "test:ci:full:junit": "npx cypress run --browser chrome --headless --reporter cypress-junit-reporter",
         "combine:report": "npx mochawesome-merge ./mochawesome-report/*.json -o index.json",
         "generate:report": "npx marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
     },
     "devDependencies": {
         "cypress": "^7.0.1",
+        "cypress-junit-reporter": "^1.3.1",
+        "cypress-multi-reporters": "^1.5.0",
         "mochawesome": "^6.2.2",
         "mochawesome-merge": "^4.2.0",
         "mochawesome-report-generator": "^5.2.0"

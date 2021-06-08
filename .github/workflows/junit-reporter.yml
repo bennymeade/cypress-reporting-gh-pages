@@ -20,7 +20,7 @@ jobs:
           $(npm bin)/cypress verify
 
       - name: Run Cypress tests
-        run: npm run test:ci:full
+        run: npm run test:ci:full:junit
 
       - name: Slack Notification
         if: failure()
