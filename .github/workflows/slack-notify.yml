@@ -52,4 +52,4 @@ jobs:
       - name: Publish Results to Testspace
         if: always()
         run: |
-          testspace results.xml
+          testspace testSpaceResults.xml
