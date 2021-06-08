@@ -1,0 +1,55 @@
+name: Cypress slack notify
+on:
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - 'master'
+jobs:
+  cypress-test:
+    name: Run on Chrome 89
+    runs-on: ubuntu-18.04
+    container: cypress/browsers:node14.16.0-chrome89-ff86
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Cypress with a clean slate
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+
+      - name: Run Cypress tests
+        run: npm run test:ci:full:junit
+
+      - name: Slack Notification
+        if: failure()
+        uses: 8398a7/action-slack@v3.9.0
+        with:
+          github_base_url: https://github.com/bennymeade/cypress-reporting-gh-pages
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow
+          icon_emoji: ':scream:'
+          text: 'Production smoke tests have failed, this requires immediate action :construction_worker:'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TOKEN }}
+
+      - name: Slack notification with Cypress screenshots & videos
+        if: failure()
+        uses: trymbill/cypress-slack-video-upload-action@v1.3.0
+        with:
+          token: ${{ secrets.SLACK_TOKEN }}
+          channels: 'cypress-results'
+          workdir: cypress
+          message-text: 'To facilitate debugging these production test failures, the Cypress screenshots and videos have been posted to this thread. :mag:'
+
+      - name: TestSpace client
+        if: always()
+        uses: testspace-com/setup-testspace@v1.0.4
+        with:
+          domain: ${{ github.repository_owner }}
+
+      - name: Publish Results to Testspace
+        if: always()
+        run: |
+          testspace test-results.xml
