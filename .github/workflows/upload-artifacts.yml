@@ -28,8 +28,14 @@ jobs:
         if: always()
         with:
           name: my-test-artifact
-          path: downloaded-artifacts
           
       - name: Display structure of downloaded files
         if: always()
-        run: ls -R
+        run: ls
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+            name: my-test-artifact
+            path: ${{ github.workspace }}
