@@ -1,0 +1,32 @@
+name: Upload artifacts after build completes
+on:
+  workflow_dispatch:
+
+jobs:
+  cypress-test:
+    name: Run on Chrome 89
+    runs-on: ubuntu-18.04
+    container: cypress/browsers:node14.16.0-chrome89-ff86
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Cypress with a clean slate
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
+
+      - name: Run Cypress tests
+        run: npm run test:ci:full
+
+      - name: make a directory
+        run: mkdir downloaded-artifacts
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-test-artifact
+          path: downloaded-artifacts
+          
+      - name: Display structure of downloaded files
+        run: ls -R
