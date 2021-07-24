@@ -20,9 +20,11 @@ jobs:
       - name: Run Cypress tests
         run: npm run test:ci:full
 
-      - name: make a directory
+      - name: house keeping
         if: always()
-        run: mkdir downloaded-artifacts
+        run: |
+          mkdir downloaded-artifacts
+          rm -rf node_modules
 
       - uses: actions/download-artifact@v2
         if: always()
