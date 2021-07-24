@@ -21,12 +21,15 @@ jobs:
         run: npm run test:ci:full
 
       - name: make a directory
+        if: always()
         run: mkdir downloaded-artifacts
 
       - uses: actions/download-artifact@v2
+        if: always()
         with:
           name: my-test-artifact
           path: downloaded-artifacts
           
       - name: Display structure of downloaded files
+        if: always()
         run: ls -R
