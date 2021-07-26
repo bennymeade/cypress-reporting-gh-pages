@@ -54,5 +54,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: my-test-artifact
-            path: ${{ github.workspace }}
+            # path: ${{ github.workspace }}
+            path: ${{ github.workspace }}/mochawesome-report/mochawesome.json
             retention-days: 2
