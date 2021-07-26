@@ -20,13 +20,24 @@ jobs:
       - name: Run Cypress tests
         run: npm run test:ci:full
 
-      - name: make a directory
-        run: mkdir downloaded-artifacts
+      - name: house keeping
+        if: always()
+        run: |
+          mkdir downloaded-artifacts
+          rm -rf node_modules
 
       - uses: actions/download-artifact@v2
+        if: always()
         with:
           name: my-test-artifact
-          path: downloaded-artifacts
           
       - name: Display structure of downloaded files
-        run: ls -R
+        if: always()
+        run: ls
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+            name: my-test-artifact
+            path: ${{ github.workspace }}
