@@ -1,0 +1,26 @@
+name: Post to New Relic
+on:
+  workflow_dispatch:
+
+jobs:
+  cypress-test:
+    name: Run on Chrome 89
+    runs-on: ubuntu-18.04
+    container: cypress/browsers:node14.16.0-chrome89-ff86
+    steps:
+      - uses: actions/checkout@v2
+
+      # - name: Install Cypress with a clean slate
+      #   run: |
+      #     npm ci
+      #     $(npm bin)/cypress cache path
+      #     $(npm bin)/cypress cache list
+      #     $(npm bin)/cypress verify
+
+      # - name: Run Cypress tests
+      #   run: npm run test:ci:full
+      #   continue-on-error: true
+
+      - name: Post to New Relic
+        run: |
+          curl --fail --request POST --header "Api-Key: NRII-hoBrT-H5kogNg5iMXAoaePefd9QLF-uU" --header "Content-Type: application/json" --url "https://insights-collector.eu01.nr-data.net/v1/accounts/3252766/events" --data '{"eventType":"Mochawesome","suites": 66,"tests": 510,"passes": 470,"pending": 2,"failures": 1,"start": "2021-08-23T06:09:42.525Z","end": "2021-08-23T07:08:45.761Z","duration": 1497027,"testsRegistered": 455,"passPercent": 98.46153846153847,"pendingPercent": 0.43956043956043955,"other": 0,"hasOther": false,"skipped": 3,"hasSkipped": true}'
