@@ -10,16 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Install Cypress with a clean slate
-      #   run: |
-      #     npm ci
-      #     $(npm bin)/cypress cache path
-      #     $(npm bin)/cypress cache list
-      #     $(npm bin)/cypress verify
+      - name: Install Cypress with a clean slate
+        run: |
+          npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
+          $(npm bin)/cypress verify
 
-      # - name: Run Cypress tests
-      #   run: npm run test:ci:full
-      #   continue-on-error: true
+      - name: Run Cypress tests
+        run: npm run test:ci:full
+        continue-on-error: true
 
       - name: Post to New Relic
         run: |
